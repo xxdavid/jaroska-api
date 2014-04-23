@@ -1,0 +1,19 @@
+{
+  "require": {
+    "lib-curl": "*",
+    "symfony/dom-crawler": "v2.4.3",
+    "symfony/css-selector": "v2.4.3"
+  },
+  "require-dev": {
+  	"tracy/tracy": "dev-master",
+  	"nette/tester": "1.1.*@dev",
+    "squizlabs/php_codesniffer": "1.*",
+    "phpmd/phpmd" : "1.4.*"
+
+  },
+  "autoload": {
+    "psr-4": {
+      "Jaroska\\": "src/"
+    }
+  }
+}
