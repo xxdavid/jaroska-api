@@ -133,16 +133,6 @@ class Request
 
 
     /**
-     * @return array
-     */
-    public function getCookiesArray()
-    {
-        parse_str($this->cookies, $cookies);
-        return $cookies;
-    }
-
-
-    /**
      * @param string $header Response Header
      * @return string|null
      */
