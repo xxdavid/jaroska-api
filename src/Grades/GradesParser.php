@@ -90,7 +90,7 @@ class GradesParser
 
     /**
      * @param string $str
-     * @return mixed
+     * @return string
      */
     private function parseSubjectName($str)
     {

@@ -97,7 +97,7 @@ class Request
 
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getHttpCode()
     {
@@ -106,7 +106,7 @@ class Request
 
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getEffectiveUrl()
     {
@@ -115,7 +115,7 @@ class Request
 
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getEffectiveUrlWithoutQueryString()
     {
