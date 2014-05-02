@@ -59,6 +59,29 @@ class Jaroska
 
 
     /**
+     * @param string|null $html
+     * @return array
+     * @throws Authentication\Exception if user isn't authenticated
+     */
+    public function getNews($html = null)
+    {
+        $newsParser = new News\NewsParser();
+        if (!$html) {
+            if (isset($this->authenticator)) {
+                $html =$newsParser->fetch($this->authenticator);
+            } else {
+                throw new Authentication\Exception(
+                    "Not authenticated. Call authenticate().",
+                    Authentication\Exception::NOT_AUTHENTICATED
+                );
+            }
+        }
+        $this->lastHtml = $html;
+        return $newsParser->parse($html);
+    }
+
+
+    /**
      * @return string
      */
     public function getSession()
