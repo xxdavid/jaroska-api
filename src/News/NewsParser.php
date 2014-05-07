@@ -2,40 +2,12 @@
 
 namespace Jaroska\News;
 
-use Jaroska\Networking\Request;
-use Jaroska\Authentication\Authenticator;
-use Jaroska\Authentication\Exception as AuthenticationException;
+use Jaroska\Parser;
 use Symfony\Component\DomCrawler\Crawler;
 
-class NewsParser
+class NewsParser extends Parser
 {
-
-    const URL = 'https://is.jaroska.cz/index.php';
-
-
-    /**
-     * @param Authenticator $authenticator
-     * @return string
-     * @throws \Jaroska\Authentication\Exception if user isn't authenticated
-     */
-    public function fetch(Authenticator $authenticator)
-    {
-        if ($authenticator->getAuthenticationType() !== null) {
-            $request = new Request(
-                self::URL,
-                null,
-                Request::GET,
-                $authenticator->getSession()
-            );
-        } else {
-            throw new AuthenticationException(
-                'Not authenticated. Call authenticate().',
-                AuthenticationException::NOT_AUTHENTICATED
-            );
-        }
-        $authenticator->validateAuthentication($request);
-        return $request->getContent();
-    }
+    protected static $url = 'https://is.jaroska.cz/index.php';
 
 
     /**

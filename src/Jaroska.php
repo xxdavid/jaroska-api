@@ -36,16 +36,16 @@ class Jaroska
 
 
     /**
+     * 
+     * @param \Jaroska\Parser $parser
      * @param string|null $html
-     * @return Grades\Subject[]
      * @throws Authentication\Exception if user isn't authenticated
      */
-    public function getGrades($html = null)
+    private function get(Parser $parser, $html)
     {
-        $gradesParser = new Grades\GradesParser();
         if (!$html) {
             if (isset($this->authenticator)) {
-                $html =$gradesParser->fetch($this->authenticator);
+                $html = $parser->fetch($this->authenticator);
             } else {
                 throw new Authentication\Exception(
                     "Not authenticated. Call authenticate().",
@@ -54,7 +54,19 @@ class Jaroska
             }
         }
         $this->lastHtml = $html;
-        return $gradesParser->parse($html);
+        return $parser->parse($html); 
+    }
+
+    
+    /**
+     * @param string|null $html
+     * @return Grades\Subject[]
+     * @throws Authentication\Exception if user isn't authenticated
+     */
+    public function getGrades($html = null)
+    {
+        $gradesParser = new Grades\GradesParser;
+        return $this->get($gradesParser, $html);
     }
 
 
@@ -66,18 +78,7 @@ class Jaroska
     public function getNews($html = null)
     {
         $newsParser = new News\NewsParser();
-        if (!$html) {
-            if (isset($this->authenticator)) {
-                $html =$newsParser->fetch($this->authenticator);
-            } else {
-                throw new Authentication\Exception(
-                    "Not authenticated. Call authenticate().",
-                    Authentication\Exception::NOT_AUTHENTICATED
-                );
-            }
-        }
-        $this->lastHtml = $html;
-        return $newsParser->parse($html);
+        return $this->get($newsParser, $html);
     }
 
 
