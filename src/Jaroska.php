@@ -62,6 +62,7 @@ class Jaroska
      * @param string|null $html
      * @return Grades\Subject[]
      * @throws Authentication\Exception if user isn't authenticated
+     * @auth
      */
     public function getGrades($html = null)
     {
@@ -74,6 +75,7 @@ class Jaroska
      * @param string|null $html
      * @return array
      * @throws Authentication\Exception if user isn't authenticated
+     * @auth
      */
     public function getNews($html = null)
     {
@@ -84,6 +86,7 @@ class Jaroska
 
     /**
      * @return string
+     * @auth
      */
     public function getSession()
     {
