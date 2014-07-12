@@ -43,19 +43,19 @@ class GradesParser extends Parser
     {
         $grades = $crawler->filter("span")
             ->each(function (Crawler $gradeElement) {
-            $grade = new Grade;
-            $grade->grade = $gradeElement->text();
-            $title = $gradeElement->attr('title');
-            $parts = explode(' - ', $title, 2);
-            $grade->date = strtotime($parts[0]);
-            $grade->description = $parts[1];
-            $grade->description = str_replace(
-                " - komentář učitele neuveden",
-                '',
-                $grade->description
-            );
-            $grade->description = trim($grade->description);
-            return $grade;
+                $grade = new Grade;
+                $grade->grade = $gradeElement->text();
+                $title = $gradeElement->attr('title');
+                $parts = explode(' - ', $title, 2);
+                $grade->date = strtotime($parts[0]);
+                $grade->description = $parts[1];
+                $grade->description = str_replace(
+                    " - komentář učitele neuveden",
+                    '',
+                    $grade->description
+                );
+                $grade->description = trim($grade->description);
+                return $grade;
             });
         return $grades;
     }
