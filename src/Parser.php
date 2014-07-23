@@ -17,15 +17,23 @@ abstract class Parser
      * @param Authenticator $authenticator
      * @return string
      */
-    public function fetch(Authenticator $authenticator)
+    public function fetch(Authenticator $authenticator = null)
     {
-        $request = new Request(
-            static::$url,
-            null,
-            Request::GET,
-            $authenticator->getSession()
-        ); 
-        $authenticator->validateAuthentication($request);
+        if ($authenticator){
+            $request = new Request(
+                static::$url,
+                null,
+                Request::GET,
+                $authenticator->getSession()
+            );
+            $authenticator->validateAuthentication($request);
+        } else {
+                $request = new Request(
+                static::$url,
+                null,
+                Request::GET
+            );
+        }
         return $request->getContent();
     }
     

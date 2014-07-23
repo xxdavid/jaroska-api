@@ -13,4 +13,5 @@ if (php_sapi_name() != 'cgi-fcgi') {
     Debugger::enable();
     Debugger::$strictMode = true;
     Debugger::$showLocation = true;
+    Debugger::$maxDepth = 10;
 }
