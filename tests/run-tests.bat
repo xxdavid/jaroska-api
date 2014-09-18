@@ -1,1 +1,1 @@
-"../vendor/bin/tester.bat" -c php.ini %*
+"../vendor/bin/tester" -c php.ini .
