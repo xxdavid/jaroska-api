@@ -86,17 +86,6 @@ class Request
 
 
     /**
-     * @param string $encoding
-     * @return string
-     */
-    public function getContentInUtf8($encoding)
-    {
-        return iconv($encoding, 'UTF-8//TRANSLIT', $this->content);
-
-    }
-
-
-    /**
      * @return int
      */
     public function getHttpCode()

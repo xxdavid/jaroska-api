@@ -45,14 +45,14 @@ class Authenticator
     public function validateAuthentication(Request $request)
     {
         if ($request->getEffectiveUrlWithoutQueryString() === self::INDEX_URL) {
-            if (strpos($request->getContentInUtf8('WINDOWS-1250'), 'Nesprávné jméno nebo heslo!') !== false) {
+            if (strpos($request->getContent(), 'Nesprávné jméno nebo heslo!') !== false) {
                 throw new Exception('Invalid credentials.', Exception::INVALID_CREDENTIALS);
 
-            } elseif (strpos($request->getContentInUtf8('WINDOWS-1250'), 'Probíhá údržba systému!') !== false) {
+            } elseif (strpos($request->getContent(), 'Probíhá údržba systému!') !== false) {
                 throw new Exception('Information system maintenance. Please try again later.', Exception::MAINTENANCE);
 
             } elseif ($this->authenticationType === self::AUTH_TYPE_SESSION and
-                strpos($request->getContentInUtf8('WINDOWS-1250'), '<div class="loginpageinfo">') !== false) {
+                strpos($request->getContent(), '<div class="loginpageinfo">') !== false) {
                 throw new Exception(
                     'Invalid session. Hint: 24 minutes after last request session expires.',
                     Exception::INVALID_SESSION
