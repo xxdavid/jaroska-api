@@ -90,8 +90,8 @@ class NewsParser extends Parser
     {
         $str = $crawler->filter('.autor')->text();
         $str = str_replace('Autor:', '', $str);
-        $str = preg_replace('#\(.*\).*#', '', $str);
         $str = preg_replace('# , [0-4]\...?#', '', $str);
+        $str = preg_replace('# - .*#', '', $str);
         $str = trim($str);
         return $str;
     }
