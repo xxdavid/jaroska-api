@@ -123,7 +123,36 @@ class Jaroska
         }
         $this->lastHtml = $html;
         return $timetableParser->parse($html, $mode);
+    }
 
+
+    /**
+     * @param string|null $html
+     * @return array
+     */
+    public function getEmployeesList($html = null)
+    {
+        $employeesListParser = new Employees\EmployeesListParser();
+        return $this->get($employeesListParser, $html, false);
+    }
+
+
+    /**
+     * @param int $id
+     * @param string|null $html
+     * @return \Jaroska\Employees\Employee
+     */
+    public function getEmployeeInfo($id, $html = null)
+    {
+        if (!$id == !$html) {
+            throw new \InvalidArgumentException('You have to call getEmployeeInfo() with either $id or $html argument.');
+        }
+        $employeeInfoParser = new Employees\EmployeeInfoParser();
+        if (!$html) {
+            $html = $employeeInfoParser->fetch($id);
+        }
+        $this->lastHtml = $html;
+        return $employeeInfoParser->parse($html);
     }
 
 
