@@ -49,7 +49,7 @@ class NewsParser extends Parser
     {
         $link = $crawler->filter('.prikazynastenky')->filter('a')->attr('href');
         parse_str($link, $params);
-        $id = (int) $params['id'];
+        $id = (int)$params['id'];
         return $id;
 
     }

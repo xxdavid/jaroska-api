@@ -52,7 +52,8 @@ class Authenticator
                 throw new Exception('Information system maintenance. Please try again later.', Exception::MAINTENANCE);
 
             } elseif ($this->authenticationType === self::AUTH_TYPE_SESSION and
-                strpos($request->getContent(), '<div class="loginpageinfo">') !== false) {
+                strpos($request->getContent(), '<div class="loginpageinfo">') !== false
+            ) {
                 throw new Exception(
                     'Invalid session. Hint: 24 minutes after last request session expires.',
                     Exception::INVALID_SESSION

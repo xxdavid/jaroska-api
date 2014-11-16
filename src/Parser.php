@@ -11,15 +11,15 @@ abstract class Parser
      * @var string
      */
     protected static $url;
-    
-    
+
+
     /**
      * @param Authenticator $authenticator
      * @return string
      */
     public function fetch(Authenticator $authenticator = null)
     {
-        if ($authenticator){
+        if ($authenticator) {
             $request = new Request(
                 static::$url,
                 null,
@@ -28,7 +28,7 @@ abstract class Parser
             );
             $authenticator->validateAuthentication($request);
         } else {
-                $request = new Request(
+            $request = new Request(
                 static::$url,
                 null,
                 Request::GET
@@ -36,8 +36,8 @@ abstract class Parser
         }
         return $request->getContent();
     }
-    
-    
+
+
     /**
      * @param string $html
      */

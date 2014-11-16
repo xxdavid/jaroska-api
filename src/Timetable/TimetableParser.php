@@ -43,13 +43,13 @@ class TimetableParser
         for ($i2 = 3; $i2 <= ((count($cells) - 1)); $i2++) {
             $cell = $cells->eq($i2);
             $fonts = $cell->filter('font');
-            if (count($fonts)){
+            if (count($fonts)) {
                 preg_match('#\*\s(.+)\s:\s(\d)(?:-(\d))?#', $cell->attr('title'), $matches);
                 $day = $matches[1];
-                $startPeriod = (int) $matches[2];
-                $endPeriod = (int) isset($matches[3]) ? $matches[3] : $matches[2];
+                $startPeriod = (int)$matches[2];
+                $endPeriod = (int)isset($matches[3]) ? $matches[3] : $matches[2];
                 $lesson = new Lesson();
-                if ($mode == Jaroska::TIMETABLE_MINIMAL){
+                if ($mode == Jaroska::TIMETABLE_MINIMAL) {
                     $subjectInfo = $this->parseFontTitle($fonts->eq(0)->attr('title'));
                     $teacherInfo = $this->parseFontTitle($fonts->eq(1)->attr('title'));
                     $subjectId = $subjectInfo['abbreviation'] . $teacherInfo['abbreviation'];
@@ -80,7 +80,7 @@ class TimetableParser
                     $this->extractToObject($this->parseFontTitle($fonts->eq(2)->attr('title')), $lesson->classroom);
                 }
                 for ($i3 = $startPeriod; $i3 <= $endPeriod; $i3++) {
-                    if ($mode == Jaroska::TIMETABLE_FULL){
+                    if ($mode == Jaroska::TIMETABLE_FULL) {
                         $lesson->period = new Period();
                         $lesson->period = $periods[$i3];
                     }
@@ -101,7 +101,7 @@ class TimetableParser
         if ($mode != Jaroska::TIMETABLE_FULL) {
             $return->periods = $periods;
         }
-        if ($mode == Jaroska::TIMETABLE_MINIMAL){
+        if ($mode == Jaroska::TIMETABLE_MINIMAL) {
             $return->subjects = $subjects;
             $return->teachers = $teachers;
             $return->classrooms = $classrooms;
@@ -150,7 +150,7 @@ class TimetableParser
      */
     private function extractToObject(array $array, &$object)
     {
-        foreach($array as $key => $value){
+        foreach ($array as $key => $value) {
             $object->$key = $value;
         }
     }

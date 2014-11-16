@@ -10,7 +10,7 @@ class NewsItem
     /** @var string */
     public $title;
 
-    /** @var string*/
+    /** @var string */
     public $text;
 
     /** @var int Unix timestamp */
@@ -18,5 +18,4 @@ class NewsItem
 
     /** @var string Author's name; */
     public $author;
-
 }

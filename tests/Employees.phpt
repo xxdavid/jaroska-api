@@ -77,7 +77,7 @@ class EmployeesTest extends Tester\TestCase
 
     public function testInvalidArguments()
     {
-        Assert::exception(function() {
+        Assert::exception(function () {
             $this->jaroska->getEmployeeInfo(42, 'blahblablah');
         }, '\InvalidArgumentException');
     }

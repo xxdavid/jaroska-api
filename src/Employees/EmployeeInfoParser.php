@@ -37,7 +37,7 @@ class EmployeeInfoParser
         $employee = new Employee();
         $employee->name = $content->filter('h1')->first()->text();
         $list = $content->filter('ul > li');
-        $employee->otherInfo = $list->each(function(Crawler $item){
+        $employee->otherInfo = $list->each(function (Crawler $item) {
             return $item->text();
         });
         $node = $content->filter('ul')->getNode(0);

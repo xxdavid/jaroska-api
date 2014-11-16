@@ -33,11 +33,12 @@ class Request
      * @param bool $followLocation
      * @throws \Jaroska\Networking\Exception
      */
-    public function __construct($url,
-                                $args = null,
-                                $method = self::GET,
-                                $cookies = null,
-                                $followLocation = false
+    public function __construct(
+        $url,
+        $args = null,
+        $method = self::GET,
+        $cookies = null,
+        $followLocation = false
     ) {
 
         $ch = curl_init();
@@ -62,7 +63,7 @@ class Request
 
         $response = curl_exec($ch);
         if ($response == false) {
-            throw new Exception("cURL error: ".curl_error($ch), curl_errno($ch));
+            throw new Exception("cURL error: " . curl_error($ch), curl_errno($ch));
         }
 
         $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);

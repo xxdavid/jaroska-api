@@ -43,12 +43,13 @@ class Jaroska
      *
      * @param \Jaroska\Parser $parser
      * @param string|null $html
+     * @param bool $needsAuthentication
      * @throws Authentication\Exception if user isn't authenticated
      */
     private function get(Parser $parser, $html, $needsAuthentication)
     {
         if (!$html) {
-            if ($needsAuthentication){
+            if ($needsAuthentication) {
                 if (isset($this->authenticator)) {
                     $html = $parser->fetch($this->authenticator);
                 } else {
@@ -94,7 +95,6 @@ class Jaroska
 
     /**
      *
-     * @param string $class
      * @param string $html
      */
     public function getTimetableLinks($html = null)
@@ -106,15 +106,17 @@ class Jaroska
 
     /**
      *
-     * @param string $class
+     * @param string $link
+     * @param int $mode
      * @param string $html
+     * @return \Jaroska\Timetable\Timetable
      */
     public function getTimetable($link = null, $mode = self::TIMETABLE_EXCLUDE_PERIODS, $html = null)
     {
-        if (!$link == !$html){
+        if (!$link == !$html) {
             throw new \InvalidArgumentException('You have to call getTimetable() with either $class or $html argument.');
         }
-        if ($mode > 3){
+        if ($mode > 3) {
             throw new \InvalidArgumentException('Invalid mode.');
         }
         $timetableParser = new Timetable\TimetableParser();

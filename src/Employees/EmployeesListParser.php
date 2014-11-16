@@ -13,7 +13,7 @@ class EmployeesListParser extends Parser
      * @param string $html
      * @return array
      */
-    function parse($html)
+    public function parse($html)
     {
         $crawler = new Crawler($html);
         $children = $crawler->filter('.content')->first()->children();
@@ -21,7 +21,7 @@ class EmployeesListParser extends Parser
         $employees = [];
         $heading = '';
 
-        foreach($children as $child) {
+        foreach ($children as $child) {
             $tagName = $child->tagName;
             switch ($tagName) {
                 case 'br':
@@ -44,6 +44,6 @@ class EmployeesListParser extends Parser
     public function parseId($href)
     {
         preg_match('#\d{2}\?ID=(\d{4})#', $href, $matches);
-        return (int) $matches[1];
+        return (int)$matches[1];
     }
 }

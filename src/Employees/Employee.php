@@ -22,4 +22,3 @@ class Employee
     /** @var array|null */
     public $otherInfo;
 }
- 
