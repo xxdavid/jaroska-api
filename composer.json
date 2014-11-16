@@ -1,5 +1,6 @@
 {
     "name": "xxdavid/jaroska-api",
+    "license": "MIT",
     "require": {
         "lib-curl": "*",
         "symfony/dom-crawler": "v2.4.3",
